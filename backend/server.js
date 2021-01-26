@@ -1,7 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 
-require('./models/index.js')
+require('./models/database.js')
 
 require('dotenv').config();
 const port = process.env.PORT || 3001;
