@@ -1,5 +1,6 @@
 const express = require('express');
 const morgan = require('morgan');
+const Router = require('./router');
 
 require('./models/database.js')
 
@@ -10,10 +11,12 @@ const rootAPI = process.env.ROOT_API;
 const app = express();
 
 // Middleware pour avoir des info sur la route
-app.use(morgan);
+app.use(morgan("dev"));
+app.use(express.urlencoded({ extended: true }))
 
 app.use(express.urlencoded({extended: true}));
 
 // app.use(rootAPI, )
+app.use(rootAPI, Router);
 
 app.listen(3001, () => { console.log(`started on port ${port}`)})
